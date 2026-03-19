@@ -14,12 +14,9 @@
 # PBS DIRECTIVES
 # ============================================================
 
-#PBS -N uw3_job
-#PBS -o uw3_${PBS_JOBID}.out
-#PBS -e uw3_${PBS_JOBID}.err
-#PBS -j oe
-#PBS -q normal
 #PBS -P m18
+#PBS -N uw3_job
+#PBS -q normal
 #PBS -l walltime=01:00:00
 #PBS -l ncpus=4
 #PBS -l mem=16gb
@@ -35,7 +32,7 @@ INSTALL_SCRIPT=/g/data/m18/software/uw3-pixi/gadi_install_shared.sh
 
 # Python script to run — relative to the directory where qsub is called.
 # Override with: qsub -v SCRIPT=/absolute/path/to/script.py
-SCRIPT="${SCRIPT:-gadi_test_stokes.py}"
+SCRIPT=gadi_test_stokes.py
 
 # ============================================================
 # ENVIRONMENT SETUP
@@ -56,7 +53,7 @@ echo "MPI ranks:    ${PBS_NCPUS}"
 echo "Script:       ${SCRIPT}"
 echo ""
 
-mpirun -n "${PBS_NCPUS}" python3 "${SCRIPT}"
+mpiexec -x LD_PRELOAD=libmpi.so python3 "${SCRIPT}"
 
 echo ""
 echo "Job finished: $(date)"

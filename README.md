@@ -29,7 +29,7 @@ kaiju/
 
 ### Submit a job
 
-> **Note:** Pure users just need to do this step.
+> **Note:** `gadi_install_shared.sh` is already inside `g/data/m18/software/uw3-pixi`. Pure users just need to edit the job script accordingly and submit the job.
 
 ```bash
 # Activate the shared environment
