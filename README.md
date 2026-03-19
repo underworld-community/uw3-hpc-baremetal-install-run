@@ -32,9 +32,6 @@ kaiju/
 > **Note:** `gadi_install_shared.sh` is already inside `g/data/m18/software/uw3-pixi`. Pure users just need to edit the job script accordingly and submit the job.
 
 ```bash
-# Activate the shared environment
-source /g/data/m18/software/uw3-pixi/gadi_install_shared.sh
-
 # Edit gadi_pbs_job.sh to set your script, ncpus, walltime, then submit
 qsub gadi/gadi_pbs_job.sh
 ```
@@ -60,12 +57,9 @@ source gadi/gadi_install_shared.sh install
 
 ### Submit a job
 
-> **Note:** Pure users just need to do this step.
+> **Note:** Pure users just need to do edit the job script accordingly and submit the job.
 
 ```bash
-# Activate the shared environment
-module load underworld3/development-12Mar26
-
 # Edit kaiju_slurm_job.sh to set your script, nodes, walltime, then submit
 sbatch kaiju/kaiju_slurm_job.sh
 ```

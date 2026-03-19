@@ -17,8 +17,9 @@
 #SBATCH --job-name=uw3_job
 #SBATCH --output=uw3_%j.out       # %j = job ID
 #SBATCH --error=uw3_%j.err
-#SBATCH --nodes=4
-#SBATCH --ntasks-per-node=30      # 4 nodes x 30 = 120 MPI ranks
+#SBATCH --ntasks=2
+##SBATCH --nodes=4
+##SBATCH --ntasks-per-node=2
 #SBATCH --time=01:00:00           # HH:MM:SS wall time limit
 
 # ============================================================
@@ -30,13 +31,16 @@ UW3_MODULE="underworld3/development-12Mar26"
 
 # Python script to run — relative to directory where sbatch is called.
 # Override with: sbatch --export=SCRIPT=/absolute/path/to/script.py uw3_slurm_job_shared.sh
-SCRIPT="${SCRIPT:-test_stokes_kaiju.py}"
+SCRIPT=kaiju_test_stokes.py
 
 # ============================================================
 # ENVIRONMENT SETUP
 # ============================================================
 
 module load "${UW3_MODULE}"
+
+export PMIX_MCA_psec=native
+export OMPI_MCA_btl_tcp_if_include=eno1
 
 # ============================================================
 # RUN
