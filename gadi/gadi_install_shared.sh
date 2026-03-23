@@ -85,10 +85,10 @@ load_env() {
     # Add pixi binary to PATH
     export PATH="${PIXI_HOME}/bin:${PATH}"
 
-    # Activate pixi gadi environment
+    # Activate pixi hpc environment
     if command -v pixi &>/dev/null && [ -f "${PIXI_MANIFEST}" ]; then
-        if ! echo "${PATH}" | tr ':' '\n' | grep -q "\.pixi/envs/gadi/bin"; then
-            eval "$(pixi shell-hook -e gadi --manifest-path "${PIXI_MANIFEST}")"
+        if ! echo "${PATH}" | tr ':' '\n' | grep -q "\.pixi/envs/hpc/bin"; then
+            eval "$(pixi shell-hook -e hpc --manifest-path "${PIXI_MANIFEST}")"
         fi
     fi
 
@@ -144,10 +144,10 @@ clone_uw3() {
 }
 
 install_pixi_env() {
-    echo "==> Installing pixi gadi environment (~3 min)..."
-    pixi install -e gadi --manifest-path "${PIXI_MANIFEST}"
-    eval "$(pixi shell-hook -e gadi --manifest-path "${PIXI_MANIFEST}")"
-    echo "==> pixi gadi environment ready"
+    echo "==> Installing pixi hpc environment (~3 min)..."
+    pixi install -e hpc --manifest-path "${PIXI_MANIFEST}"
+    eval "$(pixi shell-hook -e hpc --manifest-path "${PIXI_MANIFEST}")"
+    echo "==> pixi hpc environment ready"
 }
 
 install_mpi4py() {
@@ -158,7 +158,7 @@ install_mpi4py() {
 
 install_petsc() {
     echo "==> Building PETSc with AMR tools (~1 hour)..."
-    bash "${UW3_PATH}/petsc-custom/build-petsc-gadi.sh"
+    UW_CLUSTER=gadi bash "${UW3_PATH}/petsc-custom/build-petsc.sh"
     export PYTHONPATH="${PETSC_DIR}/${PETSC_ARCH}/lib:${PYTHONPATH}"
     echo "==> PETSc installed"
 }

@@ -63,10 +63,10 @@ load_env() {
     IFS="$_old_ifs"
     unset _old_ifs _prefix
 
-    # Activate pixi kaiju environment
+    # Activate pixi hpc environment
     if command -v pixi &>/dev/null && [ -f "${PIXI_MANIFEST}" ]; then
-        if ! echo "${PATH}" | tr ':' '\n' | grep -q "\.pixi/envs/kaiju/bin"; then
-            eval "$(pixi shell-hook -e kaiju --manifest-path "${PIXI_MANIFEST}")"
+        if ! echo "${PATH}" | tr ':' '\n' | grep -q "\.pixi/envs/hpc/bin"; then
+            eval "$(pixi shell-hook -e hpc --manifest-path "${PIXI_MANIFEST}")"
         fi
     fi
 
@@ -111,10 +111,10 @@ clone_uw3() {
 }
 
 install_pixi_env() {
-    echo "==> Installing pixi kaiju environment (~3 min)..."
-    pixi install -e kaiju --manifest-path "${PIXI_MANIFEST}"
-    eval "$(pixi shell-hook -e kaiju --manifest-path "${PIXI_MANIFEST}")"
-    echo "==> pixi kaiju environment ready"
+    echo "==> Installing pixi hpc environment (~3 min)..."
+    pixi install -e hpc --manifest-path "${PIXI_MANIFEST}"
+    eval "$(pixi shell-hook -e hpc --manifest-path "${PIXI_MANIFEST}")"
+    echo "==> pixi hpc environment ready"
 }
 
 install_mpi4py() {
@@ -125,7 +125,7 @@ install_mpi4py() {
 
 install_petsc() {
     echo "==> Building PETSc with AMR tools (~1 hour)..."
-    bash "${UW3_PATH}/petsc-custom/build-petsc-kaiju.sh"
+    UW_CLUSTER=kaiju bash "${UW3_PATH}/petsc-custom/build-petsc.sh"
     export PYTHONPATH="${PETSC_DIR}/${PETSC_ARCH}/lib:${PYTHONPATH}"
     echo "==> PETSc installed"
 }

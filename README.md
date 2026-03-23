@@ -29,28 +29,32 @@ kaiju/
 
 ### Submit a job
 
-> **Note:** `gadi_install_shared.sh` is already inside `g/data/m18/software/uw3-pixi`. Pure users just need to edit the job script accordingly and submit the job.
+> **Note:** `gadi_install_shared.sh` is already inside `/g/data/m18/software/uw3-pixi`. Pure users just need to edit the job script accordingly and submit the job.
 
 ```bash
 # Edit gadi_pbs_job.sh to set your script, ncpus, walltime, then submit
-qsub gadi/gadi_pbs_job.sh
+qsub gadi_pbs_job.sh
 ```
 
 ### Per-user install
 
+Copy `gadi_install_user.sh` to a convenient location, then:
+
 ```bash
-# Install to /g/data/m18/$USER/uw3-pixi/ (first time only)
-source gadi/gadi_install_user.sh install
+# Install (first time only)
+source gadi_install_user.sh install
 
 # Activate in future sessions
-source gadi/gadi_install_user.sh
+source gadi_install_user.sh
 ```
 
 ### Shared install (admin only)
 
+Copy `gadi_install_shared.sh` to a convenient location, then:
+
 ```bash
-# Install to /g/data/m18/software/uw3-pixi/ (first time only)
-source gadi/gadi_install_shared.sh install
+# Install (first time only)
+source gadi_install_shared.sh install
 ```
 
 ## Kaiju
@@ -61,22 +65,26 @@ source gadi/gadi_install_shared.sh install
 
 ```bash
 # Edit kaiju_slurm_job.sh to set your script, nodes, walltime, then submit
-sbatch kaiju/kaiju_slurm_job.sh
+sbatch kaiju_slurm_job.sh
 ```
 
 ### Per-user install
 
+Copy `kaiju_install_user.sh` to a convenient location, then:
+
 ```bash
-# Install to ~/uw3-installation/ (first time only)
-source kaiju/kaiju_install_user.sh install
+# Install (first time only)
+source kaiju_install_user.sh install
 
 # Activate in future sessions
-source kaiju/kaiju_install_user.sh
+source kaiju_install_user.sh
 ```
 
 ### Shared install (admin only)
 
+Copy `kaiju_install_shared.sh` to a convenient location, then:
+
 ```bash
 # Install shared environment and create module file (first time only)
-source kaiju/kaiju_install_shared.sh install
+source kaiju_install_shared.sh install
 ```
