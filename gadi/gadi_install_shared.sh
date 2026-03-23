@@ -165,7 +165,7 @@ install_petsc() {
 
 install_h5py() {
     echo "==> Building h5py against Gadi HDF5 module..."
-    # The conda gadi env ships HDF5 1.14 (serial) as a transitive dependency.
+    # The conda hpc env ships HDF5 1.14 (serial) as a transitive dependency.
     # h5py's meson build finds it via cmake config files in the conda env
     # regardless of LDFLAGS/LD_LIBRARY_PATH, causing the built .so to embed
     # DT_NEEDED: libhdf5.so.310 (conda 1.14) instead of libhdf5.so.200 (Gadi
@@ -174,7 +174,7 @@ install_h5py() {
     # Fix: temporarily rename conda's libhdf5 files so meson can only find
     # Gadi's HDF5. Restore them immediately after the build.
 
-    local _conda_lib="${UW3_PATH}/.pixi/envs/gadi/lib"
+    local _conda_lib="${UW3_PATH}/.pixi/envs/hpc/lib"
     local _hidden=()
     for _f in "${_conda_lib}"/libhdf5*.so*; do
         [ -f "${_f}" ] && [[ "${_f}" != *.h5build ]] || continue
