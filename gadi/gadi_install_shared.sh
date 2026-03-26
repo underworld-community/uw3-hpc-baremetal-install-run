@@ -46,14 +46,12 @@ done
 # ============================================================
 
 export UW3_BRANCH=development
-#export UW3_REPO="https://github.com/underworldcode/underworld3.git"
-export UW3_REPO="https://github.com/jcgraciosa/underworld3.git"
-
+export UW3_REPO="https://github.com/underworldcode/underworld3.git"
 
 # DDMonYY naming convention — update this for each new install
-export INSTALL_NAME=uw3-development-17Mar26
+export INSTALL_NAME=uw3-development-26Mar26
 
-export BASE_PATH=/g/data/m18/software/uw3-pixi
+export BASE_PATH=/scratch/m18/jg0883
 export PIXI_HOME=$BASE_PATH/pixi          # pixi binary lives at $PIXI_HOME/bin/pixi
 export UW3_PATH=$BASE_PATH/$INSTALL_NAME  # UW3 repo root IS this dated directory
 
@@ -63,7 +61,7 @@ export UW3_PATH=$BASE_PATH/$INSTALL_NAME  # UW3 repo root IS this dated director
 
 export PIXI_MANIFEST="${UW3_PATH}/pixi.toml"
 export PETSC_DIR="${UW3_PATH}/petsc-custom/petsc"
-export PETSC_ARCH=arch-linux-c-opt
+export PETSC_ARCH=petsc-4-uw-openmpi
 
 export OPENBLAS_NUM_THREADS=1  # disable numpy internal parallelisation
 export OMPI_MCA_io=ompio       # preferred MPI IO implementation

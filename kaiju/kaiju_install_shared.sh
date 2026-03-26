@@ -36,7 +36,7 @@ export UW3_REPO="https://github.com/underworldcode/underworld3.git"
 
 export PIXI_MANIFEST="${UW3_PATH}/pixi.toml"
 export PETSC_DIR="${UW3_PATH}/petsc-custom/petsc"
-export PETSC_ARCH="petsc-4-uw"
+export PETSC_ARCH="petsc-4-uw-openmpi"
 
 # ============================================================
 # ENVIRONMENT ACTIVATION

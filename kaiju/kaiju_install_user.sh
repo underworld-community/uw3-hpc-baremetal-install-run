@@ -46,7 +46,7 @@ export PIXI_MANIFEST="${UW3_PATH}/pixi.toml"
 
 # PETSc lives inside the UW3 repo (petsc-custom/), same as local dev
 export PETSC_DIR="${UW3_PATH}/petsc-custom/petsc"
-export PETSC_ARCH="petsc-4-uw"
+export PETSC_ARCH="petsc-4-uw-openmpi"
 
 # ============================================================
 # ENVIRONMENT ACTIVATION

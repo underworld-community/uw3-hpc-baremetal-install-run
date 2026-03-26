@@ -61,7 +61,7 @@ export UW3_PATH=${BASE_PATH}/${INSTALL_NAME}  # UW3 repo root IS this dated dire
 
 export PIXI_MANIFEST="${UW3_PATH}/pixi.toml"
 export PETSC_DIR="${UW3_PATH}/petsc-custom/petsc"
-export PETSC_ARCH=arch-linux-c-opt
+export PETSC_ARCH=petsc-4-uw-openmpi
 
 export OPENBLAS_NUM_THREADS=1  # disable numpy internal parallelisation
 export OMPI_MCA_io=ompio       # preferred MPI IO implementation
