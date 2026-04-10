@@ -49,7 +49,7 @@ export UW3_BRANCH=development
 export UW3_REPO="https://github.com/underworldcode/underworld3.git"
 
 # DDMonYY naming convention — update this for each new install
-export INSTALL_NAME=uw3-development-26Mar26
+export INSTALL_NAME=uw3-development-07Apr26
 
 export BASE_PATH=/scratch/m18/jg0883
 export PIXI_HOME=$BASE_PATH/pixi          # pixi binary lives at $PIXI_HOME/bin/pixi
