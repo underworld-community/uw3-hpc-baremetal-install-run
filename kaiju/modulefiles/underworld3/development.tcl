@@ -23,7 +23,7 @@ module-whatis "Underworld3 geodynamics framework with AMR support"
 
 set base     /opt/cluster/software/underworld3
 set petsc    $base/petsc-custom/petsc
-set arch     petsc-325-uw-openmpi
+set arch     petsc-324-uw-openmpi
 set mpi_root /opt/cluster/spack/opt/spack/linux-rocky8-skylake_avx512/gcc-8.5.0/openmpi-4.1.6-ticvlnexxf22yptz7rw37fqhgbijeknn
 
 # Spack OpenMPI
