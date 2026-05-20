@@ -51,9 +51,11 @@ if [ -f "${_ver_file}" ]; then
     _ver=$(cat "${_ver_file}" | tr -d '[:space:]')
     export PETSC_ARCH="petsc-${_ver}-uw-openmpi"
 else
-    export PETSC_ARCH="petsc-325-uw-openmpi"
+    _built=$(ls -d "${PETSC_DIR}"/petsc-*-uw-openmpi 2>/dev/null | head -1)
+    export PETSC_ARCH="${_built:+$(basename "${_built}")}"
+    export PETSC_ARCH="${PETSC_ARCH:-petsc-324-uw-openmpi}"
 fi
-unset _ver_file _ver
+unset _ver_file _ver _built
 
 # ============================================================
 # ENVIRONMENT ACTIVATION
@@ -153,7 +155,11 @@ install_mpi4py() {
 install_petsc() {
     echo "==> Building PETSc with AMR tools (~1 hour)..."
     UW_CLUSTER=kaiju bash "${UW3_PATH}/petsc-custom/build-petsc.sh"
-    # Make petsc4py visible
+    # Re-derive PETSC_ARCH from the directory build-petsc.sh actually created,
+    # since the version is only known after the build (no .petsc-version in fresh clone).
+    _built=$(ls -d "${PETSC_DIR}"/petsc-*-uw-openmpi 2>/dev/null | head -1)
+    [ -n "${_built}" ] && export PETSC_ARCH="$(basename "${_built}")"
+    unset _built
     export PYTHONPATH="${PETSC_DIR}/${PETSC_ARCH}/lib:${PYTHONPATH}"
     echo "==> PETSc installed"
 }
