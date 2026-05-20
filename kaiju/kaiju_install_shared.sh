@@ -139,11 +139,26 @@ install_petsc() {
 
 install_h5py() {
     echo "==> Building h5py against PETSc HDF5..."
+    # Temporarily hide pixi env's serial HDF5 so h5py finds PETSc's parallel HDF5.
+    # h5py's build system loads libhdf5.so from LD_LIBRARY_PATH to detect MPI support,
+    # ignoring HDF5_DIR — same issue as Gadi.
+    local pixi_lib="${UW3_PATH}/.pixi/envs/hpc/lib"
+    local _hidden=()
+    for _f in "${pixi_lib}"/libhdf5*.so*; do
+        [ -f "${_f}" ] && mv "${_f}" "${_f}.bak" && _hidden+=("${_f}")
+    done
+
     # --no-deps: prevent pip from replacing source-built mpi4py or pixi numpy
     CC=mpicc \
     HDF5_MPI="ON" \
     HDF5_DIR="${PETSC_DIR}/${PETSC_ARCH}" \
     pip install --no-binary=h5py --no-cache-dir --force-reinstall --no-deps h5py
+    local _rc=$?
+
+    for _f in "${_hidden[@]}"; do mv "${_f}.bak" "${_f}"; done
+    unset _hidden _rc _f _pixi_lib
+
+    [ ${_rc:-0} -ne 0 ] && echo "ERROR: h5py install failed" && return 1
     echo "==> h5py installed"
 }
 
